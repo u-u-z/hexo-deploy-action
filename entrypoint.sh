@@ -43,8 +43,8 @@ echo "npm install ..."
 npm install
 
 
-echo "Clean folder ..."
-./node_modules/hexo/bin/hexo clean
+# echo "Clean folder ..."
+# ./node_modules/hexo/bin/hexo clean
 
 echo "Generate file ..."
 ./node_modules/hexo/bin/hexo generate 
