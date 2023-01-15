@@ -55,18 +55,10 @@ echo "Config git ..."
 
 # Configures Git.
 
-echo "git init"
-git init
+git init && sleep 1
 
-ls -a
-
-echo "git config user.name ${GITHUB_ACTOR}"
 git config user.name "${GITHUB_ACTOR}"
-
-echo "git config user.email ${GITHUB_ACTOR}@users.noreply.github.com"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-echo "git remote add origin ${REPOSITORY_PATH}"
 git remote add origin "${REPOSITORY_PATH}"
 
 # Checks to see if the remote exists prior to deploying.
@@ -77,10 +69,8 @@ git remote add origin "${REPOSITORY_PATH}"
 #   git checkout --orphan $BRANCH
 # fi
 
-echo "git checkout --orphan ${BRANCH}"
 git checkout --orphan "${BRANCH}"
 
-echo "git add --all"
 git add --all
 
 echo 'Start Commit'
