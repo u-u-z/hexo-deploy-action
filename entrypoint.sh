@@ -67,8 +67,8 @@ cat .git/HEAD
 
 echo "Config git ..."
 
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+git config --global user.name "${GITHUB_ACTOR}"
+git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git remote add origin "${REPOSITORY_PATH}"
 
 # Checks to see if the remote exists prior to deploying.
