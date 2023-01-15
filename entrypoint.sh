@@ -37,7 +37,7 @@ apt-get update && \
 apt-get install -y git && \
 git config --global user.name "${GITHUB_ACTOR}" && \
 git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com" && \
-
+git config --global --add safe.directory /github/workspace/public
 # Directs the action to the the Github workspace.
 cd $GITHUB_WORKSPACE 
 
