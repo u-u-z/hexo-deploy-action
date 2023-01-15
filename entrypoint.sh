@@ -35,6 +35,8 @@ echo "Deploy to ${PRO_REPOSITORY}"
 # Installs Git and jq.
 apt-get update && \
 apt-get install -y git && \
+git config --global user.name "${GITHUB_ACTOR}" && \
+git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com" && \
 
 # Directs the action to the the Github workspace.
 cd $GITHUB_WORKSPACE 
@@ -49,19 +51,14 @@ echo "Generate file ..."
 ./node_modules/hexo/bin/hexo generate 
 
 cd $PUBLISH_DIR
-git config --global --add safe.directory "/github/workspace/${PUBLISH_DIR}"
 
 # Configures Git.
 
 echo "Init Git"
 
-git init
-
-echo "Config git ..."
-
-git config --global user.name "${GITHUB_ACTOR}"
-git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-git remote add origin "${REPOSITORY_PATH}"
+git init && \
+echo "Config git ..." && \
+git remote add origin "${REPOSITORY_PATH}" && \
 
 # Checks to see if the remote exists prior to deploying.
 # If the branch doesn't exist it gets created here as an orphan.
@@ -73,14 +70,14 @@ git remote add origin "${REPOSITORY_PATH}"
 
 echo "Creating ${BRANCH}"
 
-git checkout --orphan "${BRANCH}"
+git checkout --orphan "${BRANCH}" && \
 
-git add --all
+git add --all && \
 
 echo 'Start Commit'
-git commit --allow-empty -m "Deploying to ${BRANCH}"
+git commit --allow-empty -m "Deploying to ${BRANCH}" && \
 
 echo 'Start Push'
-git push origin "${BRANCH}" --force
+git push origin "${BRANCH}" --force && \
 
 echo "Deployment succesful!"
