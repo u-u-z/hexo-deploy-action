@@ -51,11 +51,21 @@ echo "Generate file ..."
 
 cd $PUBLISH_DIR
 
-echo "Config git ..."
-
 # Configures Git.
 
-git init && sleep 1
+echo "Init Git"
+
+git init
+
+echo "Checking git repo"
+
+ls -la
+
+echo "Checking HEAD"
+
+cat .git/HEAD
+
+echo "Config git ..."
 
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -68,6 +78,8 @@ git remote add origin "${REPOSITORY_PATH}"
 #   echo "Creating remote branch ${BRANCH} as it doesn't exist..."
 #   git checkout --orphan $BRANCH
 # fi
+
+echo "Creating ${BRANCH}"
 
 git checkout --orphan "${BRANCH}"
 
